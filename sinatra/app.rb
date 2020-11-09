@@ -46,6 +46,7 @@ class WhitePepper < Sinatra::Base
     halt 200 if request.request_method == 'OPTIONS'
 
     user_id = env['rack.session']['session_id'].to_s[0..6]
+    puts user_id
     @user = User[user_id]
 
     unless @user
