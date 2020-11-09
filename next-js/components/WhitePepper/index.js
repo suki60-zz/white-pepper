@@ -10,7 +10,8 @@ function getPepper(x, y, userId) {
     method: 'post',
     baseURL: config.clientApiUrl,
     url: '/pepper',
-    params: { x, y, user_id: userId }
+    params: { x, y, user_id: userId },
+    withCredentials: true,
   }).then(res => {
     return res.data
   })
@@ -39,6 +40,7 @@ function WhitePepper({ initialPeppers = [], userId }) {
       null,
       {
         params: { id, text, user_id: userId },
+        withCredentials: true,
       }
     )
   }
@@ -46,6 +48,7 @@ function WhitePepper({ initialPeppers = [], userId }) {
   const deletePepper = (id) => {
     axios.delete(`${config.clientApiUrl}/pepper`, {
       params: { id, user_id: userId },
+      withCredentials: true,
     })
 
     setState({ action: 'delete', peppers: state.peppers.filter(pepper => pepper.id !== id) })
